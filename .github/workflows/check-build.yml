@@ -75,7 +75,7 @@ jobs:
           file: console/Dockerfile
           push: false
           load: true
-          tags: oasm/oasm-console:test
+          tags: sil3ntcor3/argusasm-console:test
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -98,7 +98,7 @@ jobs:
           file: core-api/Dockerfile
           push: false
           load: true
-          tags: oasm/oasm-api:test
+          tags: sil3ntcor3/argusasm-api:test
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
@@ -120,6 +120,6 @@ jobs:
           context: ./worker
           push: false
           load: true
-          tags: oasm/oasm-worker:test
+          tags: sil3ntcor3/argusasm-worker:test
           cache-from: type=gha
           cache-to: type=gha,mode=max
