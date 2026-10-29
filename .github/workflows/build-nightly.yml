@@ -11,7 +11,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  IMAGE_NAME: oasm/oasm
+  IMAGE_NAME: sil3ntcor3/argusasm
 
 jobs:
   detect-changes:
