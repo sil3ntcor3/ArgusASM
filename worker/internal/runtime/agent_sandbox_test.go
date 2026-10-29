@@ -11,7 +11,7 @@ import (
 
 func sandboxSpec() AgentSandboxSpec {
 	return AgentSandboxSpec{
-		Image:       "oasm/oasm-worker:latest",
+		Image:       "sil3ntcor3/argusasm-worker:latest",
 		SessionID:   "sess-1",
 		OwnerID:     "owner-abc",
 		ToolsMount:  &mount.Mount{Type: mount.TypeVolume, Source: "open-asm_worker-tools-cache", Target: "/app/oasm-tools", ReadOnly: true},
@@ -32,7 +32,7 @@ func TestBuildAgentSandboxConfig_MinimalEnv(t *testing.T) {
 	if !slices.Equal(cfg.Entrypoint, []string{"sleep", "infinity"}) {
 		t.Fatalf("Entrypoint = %v, want [sleep infinity] (the image entrypoint is the worker itself)", cfg.Entrypoint)
 	}
-	if cfg.User != "1000:1000" || cfg.WorkingDir != "/workspace" || cfg.Image != "oasm/oasm-worker:latest" {
+	if cfg.User != "1000:1000" || cfg.WorkingDir != "/workspace" || cfg.Image != "sil3ntcor3/argusasm-worker:latest" {
 		t.Fatalf("User/WorkingDir/Image = %q/%q/%q", cfg.User, cfg.WorkingDir, cfg.Image)
 	}
 }
@@ -147,7 +147,7 @@ func TestBuildAgentSandboxConfig_OnlyReadOnlyToolsMount(t *testing.T) {
 func selfContainer(image string, mounts ...container.MountPoint) *container.InspectResponse {
 	return &container.InspectResponse{
 		ContainerJSONBase: &container.ContainerJSONBase{Image: image},
-		Config:            &container.Config{Image: "oasm/oasm-worker:latest"},
+		Config:            &container.Config{Image: "sil3ntcor3/argusasm-worker:latest"},
 		Mounts:            mounts,
 	}
 }
@@ -247,8 +247,8 @@ func TestResolveSandboxImage(t *testing.T) {
 	if got := resolveSandboxImage("", selfContainer("sha256:self")); got != "sha256:self" {
 		t.Errorf("containerized worker must reuse its own image id, got %q", got)
 	}
-	if got := resolveSandboxImage("", nil); got != "oasm/oasm-worker:latest" {
-		t.Errorf("host worker default = %q, want oasm/oasm-worker:latest", got)
+	if got := resolveSandboxImage("", nil); got != "sil3ntcor3/argusasm-worker:latest" {
+		t.Errorf("host worker default = %q, want sil3ntcor3/argusasm-worker:latest", got)
 	}
 }
 

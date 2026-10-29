@@ -7,9 +7,9 @@
 <p align="center"><strong>Open-source Attack Surface Management. Discover assets. Identify exposure. Own your security data.</strong></p>
 
 <p align="center">
-  <a href="https://github.com/oasm-platform/open-asm/releases"><img src="https://img.shields.io/github/v/release/oasm-platform/open-asm?style=flat-square&label=release" alt="Latest Release"></a>
-  <a href="https://github.com/oasm-platform/open-asm/actions/workflows/build-nightly.yml"><img src="https://img.shields.io/github/actions/workflow/status/oasm-platform/open-asm/build-nightly.yml?style=flat-square&label=ci" alt="CI"></a>
-  <a href="https://hub.docker.com/r/oasm/oasm-api"><img src="https://img.shields.io/docker/pulls/oasm/oasm-api?style=flat-square&logo=docker&logoColor=white" alt="Docker Pulls"></a>
+  <a href="https://github.com/sil3ntcor3/ArgusASM/releases"><img src="https://img.shields.io/github/v/release/sil3ntcor3/ArgusASM?style=flat-square&label=release" alt="Latest Release"></a>
+  <a href="https://github.com/sil3ntcor3/ArgusASM/actions/workflows/build-nightly.yml"><img src="https://img.shields.io/github/actions/workflow/status/sil3ntcor3/ArgusASM/build-nightly.yml?style=flat-square&label=ci" alt="CI"></a>
+  <a href="https://hub.docker.com/r/sil3ntcor3/argusasm-api"><img src="https://img.shields.io/docker/pulls/sil3ntcor3/argusasm-api?style=flat-square&logo=docker&logoColor=white" alt="Docker Pulls"></a>
   <a href="https://discord.gg/fWqbNHXR8H"><img src="https://img.shields.io/badge/discord-5865F2?style=flat-square&logo=discord&logoColor=white" alt="Discord"></a>
   <a href="https://www.linkedin.com/company/oasm-platform"><img src="https://img.shields.io/badge/linkedin-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
   <a href="https://x.com/OasmPlatform"><img src="https://img.shields.io/badge/x-000000?style=flat-square&logo=x&logoColor=white" alt="X"></a>
@@ -263,8 +263,8 @@ The same GitHub or GitLab connection can open an issue in a repository you choos
 Prerequisites: Docker + Docker Compose, [Task](https://taskfile.dev/#/installation), Node.js 22, pnpm 10.33.2, Go 1.26 (for local dev).
 
 ```bash
-git clone https://github.com/oasm-platform/open-asm.git
-cd open-asm
+git clone https://github.com/sil3ntcor3/ArgusASM.git
+cd ArgusASM
 
 cp core-api/example.env core-api/.env
 cp console/example.env console/.env
@@ -291,7 +291,7 @@ Notes:
 - Set `WORKER_API_KEY` in `worker/.env` to the key the API expects.
 - On native Linux the worker needs the Docker socket group: `task docker-compose` detects `WORKER_DOCKER_GID` automatically. Raw `docker compose up` needs `WORKER_DOCKER_GID=$(stat -c '%g' /var/run/docker.sock) docker compose up -d --build`.
 - The socket mount is root-equivalent — only run trusted connector images.
-- Pre-built images: `oasm/oasm-console`, `oasm/oasm-api`, `oasm/oasm-worker` on Docker Hub.
+- Pre-built images: `sil3ntcor3/argusasm-console`, `sil3ntcor3/argusasm-api`, `sil3ntcor3/argusasm-worker` on Docker Hub.
 - Production deploy: [oasm-docker](https://github.com/oasm-platform/oasm-docker) — see [docs.oasm.io/deployment](https://docs.oasm.io/deployment).
 
 ## Development
@@ -321,13 +321,13 @@ See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the full process. Short version:
 
 ## Security
 
-See [`SECURITY.md`](SECURITY.md). Short version: report sensitive vulnerabilities via [private Security Advisories](https://github.com/oasm-platform/open-asm/security/advisories/new) — no dedicated email, no formal SLA. Non-sensitive hardening ideas can go in a public [bug report](https://github.com/oasm-platform/open-asm/issues/new?template=bug-report.yml).
+See [`SECURITY.md`](SECURITY.md). Short version: report sensitive vulnerabilities via [private Security Advisories](https://github.com/sil3ntcor3/ArgusASM/security/advisories/new) — no dedicated email, no formal SLA. Non-sensitive hardening ideas can go in a public [bug report](https://github.com/sil3ntcor3/ArgusASM/issues/new?template=bug-report.yml).
 
 ## Community and Resources
 
-- Repository: [github.com/oasm-platform/open-asm](https://github.com/oasm-platform/open-asm)
-- Issues: [open-asm/issues](https://github.com/oasm-platform/open-asm/issues) (bug-report + feature-request templates)
-- Releases: [open-asm/releases](https://github.com/oasm-platform/open-asm/releases)
+- Repository: [github.com/sil3ntcor3/ArgusASM](https://github.com/sil3ntcor3/ArgusASM)
+- Issues: [ArgusASM/issues](https://github.com/sil3ntcor3/ArgusASM/issues) (bug-report + feature-request templates)
+- Releases: [ArgusASM/releases](https://github.com/sil3ntcor3/ArgusASM/releases)
 - Docs: [docs.oasm.io](https://docs.oasm.io)
 - Connectors repo: [oasm-platform/oasm-connectors](https://github.com/oasm-platform/oasm-connectors)
 - Marketplace: [oasm.dev/marketplace](https://oasm.dev/marketplace)
@@ -341,7 +341,7 @@ See [`SECURITY.md`](SECURITY.md). Short version: report sensitive vulnerabilitie
 
 If OASM is useful to you, please star the repo — it helps others discover the project.
 
-[![Star History Chart](https://api.star-history.com/svg?repos=oasm-platform/open-asm&type=date&legend=top-left)](https://www.star-history.com/?repos=oasm-platform%2Fopen-asm&type=date&legend=top-left)
+[![Star History Chart](https://api.star-history.com/svg?repos=sil3ntcor3/ArgusASM&type=date&legend=top-left)](https://www.star-history.com/?repos=sil3ntcor3%2FArgusASM&type=date&legend=top-left)
 
 ## Sponsors
 

@@ -22,8 +22,8 @@ Thanks for considering a contribution. This guide reflects how this repo actuall
 ## Setup
 
 ```bash
-git clone https://github.com/oasm-platform/open-asm.git
-cd open-asm
+git clone https://github.com/sil3ntcor3/ArgusASM.git
+cd ArgusASM
 task init        # deps + example.env copies + postgres/redis/geo-ip/rustfs
 # worker/.env is NOT created by task init — copy it manually:
 cp worker/.example.env worker/.env   # then set WORKER_API_KEY

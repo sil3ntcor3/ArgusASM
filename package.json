@@ -4,14 +4,14 @@
   "description": "Open-source platform for cybersecurity Attack Surface Management (ASM). Built to help security teams identify, monitor, and manage external assets and exposure.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/oasm-platform/open-asm.git"
+    "url": "git+https://github.com/sil3ntcor3/ArgusASM.git"
   },
   "author": "oasm-platform",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/oasm-platform/open-asm/issues"
+    "url": "https://github.com/sil3ntcor3/ArgusASM/issues"
   },
-  "homepage": "https://github.com/oasm-platform/open-asm#readme",
+  "homepage": "https://github.com/sil3ntcor3/ArgusASM#readme",
   "packageManager": "pnpm@10.33.2",
   "pnpm": {
     "onlyBuiltDependencies": ["@swc/core", "esbuild", "grpc-tools", "msw", "protobufjs"]
