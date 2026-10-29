@@ -9,7 +9,7 @@
 <p align="center">
   <a href="https://github.com/oasm-platform/open-asm/releases"><img src="https://img.shields.io/github/v/release/oasm-platform/open-asm?style=flat-square&label=release" alt="Latest Release"></a>
   <a href="https://github.com/oasm-platform/open-asm/actions/workflows/build-nightly.yml"><img src="https://img.shields.io/github/actions/workflow/status/oasm-platform/open-asm/build-nightly.yml?style=flat-square&label=ci" alt="CI"></a>
-  <a href="https://hub.docker.com/r/oasm/oasm-api"><img src="https://img.shields.io/docker/pulls/oasm/oasm-api?style=flat-square&logo=docker&logoColor=white" alt="Docker Pulls"></a>
+  <a href="https://hub.docker.com/r/sil3ntcor3/argusasm-api"><img src="https://img.shields.io/docker/pulls/sil3ntcor3/argusasm-api?style=flat-square&logo=docker&logoColor=white" alt="Docker Pulls"></a>
   <a href="https://discord.gg/fWqbNHXR8H"><img src="https://img.shields.io/badge/discord-5865F2?style=flat-square&logo=discord&logoColor=white" alt="Discord"></a>
   <a href="https://www.linkedin.com/company/oasm-platform"><img src="https://img.shields.io/badge/linkedin-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
   <a href="https://x.com/OasmPlatform"><img src="https://img.shields.io/badge/x-000000?style=flat-square&logo=x&logoColor=white" alt="X"></a>
@@ -291,7 +291,7 @@ Notes:
 - Set `WORKER_API_KEY` in `worker/.env` to the key the API expects.
 - On native Linux the worker needs the Docker socket group: `task docker-compose` detects `WORKER_DOCKER_GID` automatically. Raw `docker compose up` needs `WORKER_DOCKER_GID=$(stat -c '%g' /var/run/docker.sock) docker compose up -d --build`.
 - The socket mount is root-equivalent — only run trusted connector images.
-- Pre-built images: `oasm/oasm-console`, `oasm/oasm-api`, `oasm/oasm-worker` on Docker Hub.
+- Pre-built images: `sil3ntcor3/argusasm-console`, `sil3ntcor3/argusasm-api`, `sil3ntcor3/argusasm-worker` on Docker Hub.
 - Production deploy: [oasm-docker](https://github.com/oasm-platform/oasm-docker) — see [docs.oasm.io/deployment](https://docs.oasm.io/deployment).
 
 ## Development
