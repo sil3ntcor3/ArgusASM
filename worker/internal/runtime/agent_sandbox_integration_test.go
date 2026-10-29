@@ -13,7 +13,7 @@ import (
 
 // Real-engine check of the sandbox. Opt-in (OASM_SANDBOX_IT=1) because it
 // needs a Docker engine and the sandbox image (OASM_SANDBOX_IT_IMAGE,
-// default oasm/oasm-worker:latest) locally.
+// default sil3ntcor3/argusasm-worker:latest) locally.
 func TestAgentSandboxIntegration(t *testing.T) {
 	if os.Getenv("OASM_SANDBOX_IT") != "1" {
 		t.Skip("set OASM_SANDBOX_IT=1 to run against a real Docker engine")

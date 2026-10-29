@@ -57,7 +57,7 @@ Before you begin, ensure you have the following installed:
 The project is organized into several key directories:
 
 ```
-open-asm/
+ArgusASM/
 ├── core-api/           # NestJS API server
 │   ├── src/            # Source code
 │   │   ├── database/   # DataSource config + TypeORM migrations
