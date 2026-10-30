@@ -32,7 +32,7 @@ import { z } from 'zod';
 const LOGO_MAX_SIZE_BYTES = 5 * 1024 * 1024;
 // Mirrors the server allow-list in StorageController.isAllowedImageContentType.
 const LOGO_ACCEPT = 'image/png,image/jpeg,image/gif,image/webp,image/svg+xml';
-const DEFAULT_NAME = 'OASM';
+const DEFAULT_NAME = 'Argus';
 const DEFAULT_LOGO = '/logo.png';
 
 const brandSchema = z.object({
