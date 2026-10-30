@@ -73,7 +73,7 @@ export const settingsTabGroups: SettingsTabGroup[] = [
         content: {
           title: 'Workspace API key',
           description:
-            'Use this key to authenticate requests to the OASM API from scripts, CI pipelines and integrations.',
+            'Use this key to authenticate requests to the Argus API from scripts, CI pipelines and integrations.',
         },
         component: <ApiKeysSettings />,
         permission: 'workspace.apikey',
@@ -143,7 +143,7 @@ export const settingsTabGroups: SettingsTabGroup[] = [
         icon: <Plug />,
         content: {
           title: 'MCP Connect',
-          description: 'Connect to OASM server via MCP protocol',
+          description: 'Connect to Argus server via MCP protocol',
         },
         component: <McpConnect />,
         permission: 'workspace.apikey',

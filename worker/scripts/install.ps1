@@ -5,7 +5,7 @@
 
 .DESCRIPTION
     Downloads the latest oasm-worker binary for your platform from
-    https://github.com/sil3ntcor3/ArgusASM releases, verifies it,
+    https://github.com/sil3ntcor3/argus releases, verifies it,
     and optionally starts the worker immediately.
 
 .PARAMETER ApiKey
@@ -71,7 +71,7 @@ param(
 )
 
 $ErrorActionPreference = "Stop"
-$Repository = "sil3ntcor3/ArgusASM"
+$Repository = "sil3ntcor3/argus"
 
 # ============================================================
 # Platform Detection

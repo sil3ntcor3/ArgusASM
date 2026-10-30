@@ -31,7 +31,7 @@ describe('detectBrowser', () => {
 });
 
 describe('buildBugReportUrl', () => {
-  const repo = 'https://github.com/sil3ntcor3/ArgusASM';
+  const repo = 'https://github.com/sil3ntcor3/argus';
 
   it('prefills template, version and browser', () => {
     const url = new URL(
