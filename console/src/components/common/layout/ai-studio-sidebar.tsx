@@ -250,7 +250,7 @@ export function AiStudioSidebar() {
       groups={[]}
       primary={false}
       isBack={false}
-      title="OASM AI Studio"
+      title="Argus AI Studio"
       showSwitchWorkspace={false}
     >
       <SidebarGroup className="p-0">

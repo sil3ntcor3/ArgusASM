@@ -84,12 +84,12 @@ describe('ToolInstallConfirmDialog', () => {
     mocks.getConnector.mockReset();
   });
 
-  it('shows the tool and OASM logos', async () => {
+  it('shows the tool and Argus logos', async () => {
     await openDialog();
 
     expect(screen.getByRole('heading', { name: 'Install Gitleaks' })).toBeTruthy();
     expect(screen.getByRole('img', { name: 'gitleaks' })).toBeTruthy();
-    expect(screen.getByRole('img', { name: 'OASM Platform' })).toBeTruthy();
+    expect(screen.getByRole('img', { name: 'Argus Platform' })).toBeTruthy();
   });
 
   it('names the selected workspace in its own section', async () => {

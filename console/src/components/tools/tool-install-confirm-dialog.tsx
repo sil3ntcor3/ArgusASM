@@ -83,7 +83,7 @@ interface ToolInstallConfirmDialogProps {
 }
 
 /**
- * Confirm step before installing a tool in the current workspace: tool -> OASM
+ * Confirm step before installing a tool in the current workspace: tool -> Argus
  * header, the target workspace, then what the tool is and every input it
  * receives on each run, so the user sees what they grant before confirming.
  *
@@ -138,7 +138,7 @@ export function ToolInstallConfirmDialog({
             <LogoFrame className="shrink-0 overflow-hidden">
               <ToolLogo name={tool.name} logoUrl={tool.logoUrl} size={56} />
             </LogoFrame>
-            {/* Chevrons brighten toward OASM: the tool is joining the platform. */}
+            {/* Chevrons brighten toward Argus: the tool is joining the platform. */}
             <div aria-hidden="true" className="flex text-muted-foreground">
               {[0.25, 0.45, 0.65, 0.85, 1].map((opacity) => (
                 <ChevronRight
@@ -151,7 +151,7 @@ export function ToolInstallConfirmDialog({
             <LogoFrame className="shrink-0 overflow-hidden">
               <img
                 src="/logo.png"
-                alt="OASM Platform"
+                alt="Argus Platform"
                 width={56}
                 height={56}
                 className="size-14 object-contain"
@@ -189,7 +189,7 @@ export function ToolInstallConfirmDialog({
             <Section title="Data shared with this tool">
               <p className="text-sm text-muted-foreground">
                 Each time it runs, {toolName} receives the following inputs
-                from OASM.
+                from Argus.
               </p>
               {inputGroups.map((group) => (
                 <div key={group.category} className="mt-3">
