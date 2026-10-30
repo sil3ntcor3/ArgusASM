@@ -60,6 +60,7 @@ func browserSnapshot(ctx context.Context, s *browserSession, args []string) (str
 
 // snapshot renders the active page's accessibility tree, one node per line,
 // and replaces the session's ref table with the refs it prints.
+// Display names are trimmed; control values retain their original whitespace.
 func snapshot(ctx context.Context, s *browserSession, interactiveOnly bool, depth int, scope string) (string, error) {
 	page, err := s.page()
 	if err != nil {
@@ -103,7 +104,7 @@ func snapshot(ctx context.Context, s *browserSession, interactiveOnly bool, dept
 	var b strings.Builder
 	var walk func(n *proto.AccessibilityAXNode, level int, parentName string)
 	walk = func(n *proto.AccessibilityAXNode, level int, parentName string) {
-		role, name := axString(n.Role), axString(n.Name)
+		role, name := axString(n.Role), strings.TrimSpace(axString(n.Name))
 		printed := false
 		switch {
 		case n.Ignored || silentRoles[role]:
