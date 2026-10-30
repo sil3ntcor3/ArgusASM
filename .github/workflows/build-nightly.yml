@@ -1,9 +1,10 @@
-name: Build Argus Development Images
+name: Build Argus Branch Images
 
 on:
   push:
     branches:
       - "dev"
+      - "main"
   workflow_dispatch:
 
 concurrency:
@@ -12,12 +13,13 @@ concurrency:
 
 env:
   IMAGE_NAME: sil3ntcor3/argus
+  IMAGE_TAG: ${{ github.ref == 'refs/heads/main' && 'latest' || 'dev' }}
 
 jobs:
   detect-changes:
     name: Detect Changed Services
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/dev'
+    if: github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/main'
     permissions:
       contents: read
     outputs:
@@ -101,15 +103,15 @@ jobs:
             --push \
             --cache-from=type=registry,ref=${{ env.IMAGE_NAME }}-${{ matrix.service }}:buildcache \
             --cache-to=type=registry,ref=${{ env.IMAGE_NAME }}-${{ matrix.service }}:buildcache,mode=max \
-            --build-arg APP_VERSION=dev \
-            --tag ${{ env.IMAGE_NAME }}-${{ matrix.service }}:dev \
+            --build-arg APP_VERSION=${{ env.IMAGE_TAG }} \
+            --tag ${{ env.IMAGE_NAME }}-${{ matrix.service }}:${{ env.IMAGE_TAG }} \
             --file ./${{ matrix.service == 'api' && 'core-api' || matrix.service }}/Dockerfile \
             ./${{ matrix.service == 'worker' && 'worker' || '.' }}
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@v0.36.0
         with:
-          image-ref: '${{ env.IMAGE_NAME }}-${{ matrix.service }}:dev'
+          image-ref: '${{ env.IMAGE_NAME }}-${{ matrix.service }}:${{ env.IMAGE_TAG }}'
           format: 'sarif'
           output: 'trivy-results.${{ matrix.service }}.sarif'
           ignore-unfixed: true

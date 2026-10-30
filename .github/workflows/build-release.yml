@@ -186,12 +186,7 @@ jobs:
       - name: Build and push
         env:
           RELEASE_TAG: ${{ needs.prepare.outputs.tag }}
-          IS_STABLE: ${{ needs.prepare.outputs.stable }}
         run: |
-          LATEST_TAG=()
-          if [ "$IS_STABLE" = "true" ]; then
-            LATEST_TAG=(--tag "${{ env.IMAGE_NAME }}-${{ matrix.service }}:latest")
-          fi
           docker buildx build \
             --platform linux/amd64,linux/arm64 \
             --push \
@@ -199,6 +194,5 @@ jobs:
             --cache-to=type=registry,ref=${{ env.IMAGE_NAME }}-${{ matrix.service }}:buildcache,mode=max \
             --build-arg "APP_VERSION=$RELEASE_TAG" \
             --tag "${{ env.IMAGE_NAME }}-${{ matrix.service }}:$RELEASE_TAG" \
-            "${LATEST_TAG[@]}" \
             --file ./${{ matrix.service == 'api' && 'core-api' || matrix.service }}/Dockerfile \
             ./${{ matrix.service == 'worker' && 'worker' || '.' }}
