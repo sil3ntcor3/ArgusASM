@@ -7,8 +7,8 @@
 <p align="center"><strong>Open-source Attack Surface Management. Discover assets. Identify exposure. Own your security data.</strong></p>
 
 <p align="center">
-  <a href="https://github.com/sil3ntcor3/ArgusASM/releases"><img src="https://img.shields.io/github/v/release/sil3ntcor3/ArgusASM?style=flat-square&label=release" alt="Latest Release"></a>
-  <a href="https://github.com/sil3ntcor3/ArgusASM/actions/workflows/build-nightly.yml"><img src="https://img.shields.io/github/actions/workflow/status/sil3ntcor3/ArgusASM/build-nightly.yml?style=flat-square&label=ci" alt="CI"></a>
+  <a href="https://github.com/sil3ntcor3/argus/releases"><img src="https://img.shields.io/github/v/release/sil3ntcor3/argus?style=flat-square&label=release" alt="Latest Release"></a>
+  <a href="https://github.com/sil3ntcor3/argus/actions/workflows/build-nightly.yml"><img src="https://img.shields.io/github/actions/workflow/status/sil3ntcor3/argus/build-nightly.yml?style=flat-square&label=ci" alt="CI"></a>
   <a href="https://hub.docker.com/r/sil3ntcor3/argusasm-api"><img src="https://img.shields.io/docker/pulls/sil3ntcor3/argusasm-api?style=flat-square&logo=docker&logoColor=white" alt="Docker Pulls"></a>
   <a href="https://discord.gg/fWqbNHXR8H"><img src="https://img.shields.io/badge/discord-5865F2?style=flat-square&logo=discord&logoColor=white" alt="Discord"></a>
   <a href="https://www.linkedin.com/company/oasm-platform"><img src="https://img.shields.io/badge/linkedin-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
@@ -144,28 +144,28 @@ graph TD
 
 ## Connectors
 
-Scanning tools live as isolated Docker images in the companion repo [oasm-connectors](https://github.com/oasm-platform/oasm-connectors), each wrapping a tool in a small adapter. OASM reads that catalog as data (`task sync-connectors`), so a worker resolves the right image and runs the tool on demand inside its own container — adding or upgrading a scanner never needs an OASM release.
+Scanning tools live as isolated Docker images in the companion repo [argus-connectors](https://github.com/sil3ntcor3/argus-connectors), each wrapping a tool in a small adapter. OASM reads that catalog as data (`task sync-connectors`), so a worker resolves the right image and runs the tool on demand inside its own container — adding or upgrading a scanner never needs an OASM release.
 
 Browse every connector in the [marketplace](https://oasm.dev/marketplace), then install the ones you need from **Tools** in the console.
 
 <table>
   <tr>
-    <td align="center" width="72"><img src="https://raw.githubusercontent.com/oasm-platform/oasm-connectors/main/ports_scanner/nmap/logo.png" width="40" height="40" alt="Nmap" title="Nmap"></td>
-    <td align="center" width="72"><img src="https://raw.githubusercontent.com/oasm-platform/oasm-connectors/main/ports_scanner/rustscan/logo.png" width="40" height="40" alt="RustScan" title="RustScan"></td>
-    <td align="center" width="72"><img src="https://raw.githubusercontent.com/oasm-platform/oasm-connectors/main/url_discovery/katana/logo.png" width="40" height="40" alt="Katana" title="Katana"></td>
-    <td align="center" width="72"><img src="https://raw.githubusercontent.com/oasm-platform/oasm-connectors/main/url_discovery/ffuf/logo.png" width="40" height="40" alt="ffuf" title="ffuf"></td>
-    <td align="center" width="72"><img src="https://raw.githubusercontent.com/oasm-platform/oasm-connectors/main/url_discovery/dirsearch/logo.png" width="40" height="40" alt="dirsearch" title="dirsearch"></td>
-    <td align="center" width="72"><img src="https://raw.githubusercontent.com/oasm-platform/oasm-connectors/main/url_discovery/arjun/logo.png" width="40" height="40" alt="Arjun" title="Arjun"></td>
-    <td align="center" width="72"><img src="https://raw.githubusercontent.com/oasm-platform/oasm-connectors/main/secrets/gitleaks/logo.png" width="40" height="40" alt="Gitleaks" title="Gitleaks"></td>
+    <td align="center" width="72"><img src="https://raw.githubusercontent.com/sil3ntcor3/argus-connectors/main/ports_scanner/nmap/logo.png" width="40" height="40" alt="Nmap" title="Nmap"></td>
+    <td align="center" width="72"><img src="https://raw.githubusercontent.com/sil3ntcor3/argus-connectors/main/ports_scanner/rustscan/logo.png" width="40" height="40" alt="RustScan" title="RustScan"></td>
+    <td align="center" width="72"><img src="https://raw.githubusercontent.com/sil3ntcor3/argus-connectors/main/url_discovery/katana/logo.png" width="40" height="40" alt="Katana" title="Katana"></td>
+    <td align="center" width="72"><img src="https://raw.githubusercontent.com/sil3ntcor3/argus-connectors/main/url_discovery/ffuf/logo.png" width="40" height="40" alt="ffuf" title="ffuf"></td>
+    <td align="center" width="72"><img src="https://raw.githubusercontent.com/sil3ntcor3/argus-connectors/main/url_discovery/dirsearch/logo.png" width="40" height="40" alt="dirsearch" title="dirsearch"></td>
+    <td align="center" width="72"><img src="https://raw.githubusercontent.com/sil3ntcor3/argus-connectors/main/url_discovery/arjun/logo.png" width="40" height="40" alt="Arjun" title="Arjun"></td>
+    <td align="center" width="72"><img src="https://raw.githubusercontent.com/sil3ntcor3/argus-connectors/main/secrets/gitleaks/logo.png" width="40" height="40" alt="Gitleaks" title="Gitleaks"></td>
   </tr>
   <tr>
-    <td align="center" width="72"><img src="https://raw.githubusercontent.com/oasm-platform/oasm-connectors/main/vulnerabilities/nuclei/logo.png" width="40" height="40" alt="Nuclei" title="Nuclei"></td>
-    <td align="center" width="72"><img src="https://raw.githubusercontent.com/oasm-platform/oasm-connectors/main/vulnerabilities/zap/logo.png" width="40" height="40" alt="OWASP ZAP" title="OWASP ZAP"></td>
-    <td align="center" width="72"><img src="https://raw.githubusercontent.com/oasm-platform/oasm-connectors/main/vulnerabilities/nikto/logo.png" width="40" height="40" alt="Nikto" title="Nikto"></td>
-    <td align="center" width="72"><img src="https://raw.githubusercontent.com/oasm-platform/oasm-connectors/main/vulnerabilities/wpscan/logo.png" width="40" height="40" alt="WPScan" title="WPScan"></td>
-    <td align="center" width="72"><img src="https://raw.githubusercontent.com/oasm-platform/oasm-connectors/main/vulnerabilities/nessus/logo.png" width="40" height="40" alt="Nessus" title="Nessus"></td>
-    <td align="center" width="72"><img src="https://raw.githubusercontent.com/oasm-platform/oasm-connectors/main/vulnerabilities/acunetix/logo.png" width="40" height="40" alt="Acunetix" title="Acunetix"></td>
-    <td align="center" width="72"><img src="https://raw.githubusercontent.com/oasm-platform/oasm-connectors/main/sca/trivy/logo.png" width="40" height="40" alt="Trivy" title="Trivy"></td>
+    <td align="center" width="72"><img src="https://raw.githubusercontent.com/sil3ntcor3/argus-connectors/main/vulnerabilities/nuclei/logo.png" width="40" height="40" alt="Nuclei" title="Nuclei"></td>
+    <td align="center" width="72"><img src="https://raw.githubusercontent.com/sil3ntcor3/argus-connectors/main/vulnerabilities/zap/logo.png" width="40" height="40" alt="OWASP ZAP" title="OWASP ZAP"></td>
+    <td align="center" width="72"><img src="https://raw.githubusercontent.com/sil3ntcor3/argus-connectors/main/vulnerabilities/nikto/logo.png" width="40" height="40" alt="Nikto" title="Nikto"></td>
+    <td align="center" width="72"><img src="https://raw.githubusercontent.com/sil3ntcor3/argus-connectors/main/vulnerabilities/wpscan/logo.png" width="40" height="40" alt="WPScan" title="WPScan"></td>
+    <td align="center" width="72"><img src="https://raw.githubusercontent.com/sil3ntcor3/argus-connectors/main/vulnerabilities/nessus/logo.png" width="40" height="40" alt="Nessus" title="Nessus"></td>
+    <td align="center" width="72"><img src="https://raw.githubusercontent.com/sil3ntcor3/argus-connectors/main/vulnerabilities/acunetix/logo.png" width="40" height="40" alt="Acunetix" title="Acunetix"></td>
+    <td align="center" width="72"><img src="https://raw.githubusercontent.com/sil3ntcor3/argus-connectors/main/sca/trivy/logo.png" width="40" height="40" alt="Trivy" title="Trivy"></td>
   </tr>
 </table>
 
@@ -263,8 +263,8 @@ The same GitHub or GitLab connection can open an issue in a repository you choos
 Prerequisites: Docker + Docker Compose, [Task](https://taskfile.dev/#/installation), Node.js 22, pnpm 10.33.2, Go 1.26 (for local dev).
 
 ```bash
-git clone https://github.com/sil3ntcor3/ArgusASM.git
-cd ArgusASM
+git clone https://github.com/sil3ntcor3/argus.git
+cd argus
 
 cp core-api/example.env core-api/.env
 cp console/example.env console/.env
@@ -292,7 +292,7 @@ Notes:
 - On native Linux the worker needs the Docker socket group: `task docker-compose` detects `WORKER_DOCKER_GID` automatically. Raw `docker compose up` needs `WORKER_DOCKER_GID=$(stat -c '%g' /var/run/docker.sock) docker compose up -d --build`.
 - The socket mount is root-equivalent — only run trusted connector images.
 - Pre-built images: `sil3ntcor3/argusasm-console`, `sil3ntcor3/argusasm-api`, `sil3ntcor3/argusasm-worker` on Docker Hub.
-- Production deploy: [oasm-docker](https://github.com/oasm-platform/oasm-docker) — see [docs.oasm.io/deployment](https://docs.oasm.io/deployment).
+- Production deploy: [argus-docker](https://github.com/sil3ntcor3/argus-docker) — see [docs.oasm.io/deployment](https://docs.oasm.io/deployment).
 
 ## Development
 
@@ -321,15 +321,15 @@ See [`CONTRIBUTING.md`](CONTRIBUTING.md) for the full process. Short version:
 
 ## Security
 
-See [`SECURITY.md`](SECURITY.md). Short version: report sensitive vulnerabilities via [private Security Advisories](https://github.com/sil3ntcor3/ArgusASM/security/advisories/new) — no dedicated email, no formal SLA. Non-sensitive hardening ideas can go in a public [bug report](https://github.com/sil3ntcor3/ArgusASM/issues/new?template=bug-report.yml).
+See [`SECURITY.md`](SECURITY.md). Short version: report sensitive vulnerabilities via [private Security Advisories](https://github.com/sil3ntcor3/argus/security/advisories/new) — no dedicated email, no formal SLA. Non-sensitive hardening ideas can go in a public [bug report](https://github.com/sil3ntcor3/argus/issues/new?template=bug-report.yml).
 
 ## Community and Resources
 
-- Repository: [github.com/sil3ntcor3/ArgusASM](https://github.com/sil3ntcor3/ArgusASM)
-- Issues: [ArgusASM/issues](https://github.com/sil3ntcor3/ArgusASM/issues) (bug-report + feature-request templates)
-- Releases: [ArgusASM/releases](https://github.com/sil3ntcor3/ArgusASM/releases)
+- Repository: [github.com/sil3ntcor3/argus](https://github.com/sil3ntcor3/argus)
+- Issues: [argus/issues](https://github.com/sil3ntcor3/argus/issues) (bug-report + feature-request templates)
+- Releases: [argus/releases](https://github.com/sil3ntcor3/argus/releases)
 - Docs: [docs.oasm.io](https://docs.oasm.io)
-- Connectors repo: [oasm-platform/oasm-connectors](https://github.com/oasm-platform/oasm-connectors)
+- Connectors repo: [sil3ntcor3/argus-connectors](https://github.com/sil3ntcor3/argus-connectors)
 - Marketplace: [oasm.dev/marketplace](https://oasm.dev/marketplace)
 - Discord / LinkedIn / X: see badges at the top.
 
@@ -341,7 +341,7 @@ See [`SECURITY.md`](SECURITY.md). Short version: report sensitive vulnerabilitie
 
 If OASM is useful to you, please star the repo — it helps others discover the project.
 
-[![Star History Chart](https://api.star-history.com/svg?repos=sil3ntcor3/ArgusASM&type=date&legend=top-left)](https://www.star-history.com/?repos=sil3ntcor3%2FArgusASM&type=date&legend=top-left)
+[![Star History Chart](https://api.star-history.com/svg?repos=sil3ntcor3/argus&type=date&legend=top-left)](https://www.star-history.com/?repos=sil3ntcor3%2Fargus&type=date&legend=top-left)
 
 ## Sponsors
 

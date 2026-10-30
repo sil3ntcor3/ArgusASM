@@ -5,7 +5,7 @@ Thanks for considering a contribution. This guide reflects how this repo actuall
 ## Ways to Contribute
 
 - **Bug fixes** — especially tenant-isolation, auth, and scanner-pipeline bugs.
-- **New connectors** — live in the separate [oasm-connectors](https://github.com/oasm-platform/oasm-connectors) repo, not here. This repo only syncs its `manifest.json`.
+- **New connectors** — live in the separate [argus-connectors](https://github.com/sil3ntcor3/argus-connectors) repo, not here. This repo only syncs its `manifest.json`.
 - **Docs and tests** — always welcome, lowest review friction.
 - **Security workflow improvements** — asset discovery, finding triage, scheduling, alerting.
 
@@ -22,8 +22,8 @@ Thanks for considering a contribution. This guide reflects how this repo actuall
 ## Setup
 
 ```bash
-git clone https://github.com/sil3ntcor3/ArgusASM.git
-cd ArgusASM
+git clone https://github.com/sil3ntcor3/argus.git
+cd argus
 task init        # deps + example.env copies + postgres/redis/geo-ip/rustfs
 # worker/.env is NOT created by task init — copy it manually:
 cp worker/.example.env worker/.env   # then set WORKER_API_KEY

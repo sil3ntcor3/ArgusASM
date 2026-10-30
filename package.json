@@ -1,17 +1,17 @@
 {
-  "name": "open-asm",
+  "name": "argus",
   "version": "0.0.1",
   "description": "Open-source platform for cybersecurity Attack Surface Management (ASM). Built to help security teams identify, monitor, and manage external assets and exposure.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/sil3ntcor3/ArgusASM.git"
+    "url": "git+https://github.com/sil3ntcor3/argus.git"
   },
   "author": "oasm-platform",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/sil3ntcor3/ArgusASM/issues"
+    "url": "https://github.com/sil3ntcor3/argus/issues"
   },
-  "homepage": "https://github.com/sil3ntcor3/ArgusASM#readme",
+  "homepage": "https://github.com/sil3ntcor3/argus#readme",
   "packageManager": "pnpm@10.33.2",
   "pnpm": {
     "onlyBuiltDependencies": ["@swc/core", "esbuild", "grpc-tools", "msw", "protobufjs"]

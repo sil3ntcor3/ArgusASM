@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-OASM is pre-1.0 (`0.0.1` in `package.json`). Only the latest `main` branch and the most recent [release](https://github.com/sil3ntcor3/ArgusASM/releases) receive security fixes. There is no LTS series.
+OASM is pre-1.0 (`0.0.1` in `package.json`). Only the latest `main` branch and the most recent [release](https://github.com/sil3ntcor3/argus/releases) receive security fixes. There is no LTS series.
 
 | Version | Supported |
 |---------|-----------|
@@ -11,9 +11,9 @@ OASM is pre-1.0 (`0.0.1` in `package.json`). Only the latest `main` branch and t
 
 ## Reporting a Vulnerability
 
-**Use GitHub's private vulnerability reporting** — [open a draft Security Advisory](https://github.com/sil3ntcor3/ArgusASM/security/advisories/new). This keeps details private until a fix is ready. There is no dedicated security email address; do not post exploit details in public issues or Discord.
+**Use GitHub's private vulnerability reporting** — [open a draft Security Advisory](https://github.com/sil3ntcor3/argus/security/advisories/new). This keeps details private until a fix is ready. There is no dedicated security email address; do not post exploit details in public issues or Discord.
 
-If the issue is clearly **not sensitive** (hardening idea, dependency bump, theoretical concern with no exploit path), a public [bug report](https://github.com/sil3ntcor3/ArgusASM/issues/new?template=bug-report.yml) is fine.
+If the issue is clearly **not sensitive** (hardening idea, dependency bump, theoretical concern with no exploit path), a public [bug report](https://github.com/sil3ntcor3/argus/issues/new?template=bug-report.yml) is fine.
 
 ### What to include
 
