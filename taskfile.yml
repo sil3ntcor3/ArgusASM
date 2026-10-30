@@ -66,6 +66,34 @@ tasks:
     cmds:
       - cd console && task gen-api
 
+  images:lint:
+    desc: Validate image workflows (requires actionlint on PATH)
+    cmds:
+      - actionlint .github/workflows/build-nightly.yml .github/workflows/build-release.yml .github/workflows/check-build.yml
+
+  images:check:
+    desc: Check Dockerfiles and resolve Compose image references without starting services
+    cmds:
+      - docker buildx build --check --file core-api/Dockerfile .
+      - docker buildx build --check --file console/Dockerfile .
+      - docker buildx build --check --file worker/Dockerfile ./worker
+      - docker compose --env-file core-api/example.env config --no-env-resolution --images
+
+  images:build:
+    desc: Build one image into the local build cache without publishing
+    requires:
+      vars: [SERVICE]
+    preconditions:
+      - sh: '[ "{{.SERVICE}}" = api ] || [ "{{.SERVICE}}" = console ] || [ "{{.SERVICE}}" = worker ]'
+        msg: SERVICE must be api, console, or worker
+    cmds:
+      - >-
+        docker buildx build --platform {{.PLATFORMS | default "linux/amd64,linux/arm64"}}
+        --output type=cacheonly --build-arg APP_VERSION=local
+        --tag sil3ntcor3/argus-{{.SERVICE}}:local
+        --file {{if eq .SERVICE "api"}}core-api{{else}}{{.SERVICE}}{{end}}/Dockerfile
+        {{if eq .SERVICE "worker"}}./worker{{else}}.{{end}}
+
   # Docker Compose orchestration
   # Starts all services using docker compose with environment variables
   # Builds and recreates the full stack; `task docker-compose workers=3` scales

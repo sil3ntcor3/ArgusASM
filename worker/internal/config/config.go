@@ -65,7 +65,7 @@ type Config struct {
 	// Docker engine is unavailable commands error out, never fall back to host.
 	AgentSandbox bool `mapstructure:"agent_sandbox"`
 	// AgentSandboxImage is the sandbox image. Empty = auto: the worker's own
-	// container image when containerized, else sil3ntcor3/argusasm-worker:latest.
+	// container image when containerized, else sil3ntcor3/argus-worker:latest.
 	AgentSandboxImage string `mapstructure:"agent_sandbox_image"`
 	// AgentSandboxToolsSource overrides what is mounted read-only at the tool
 	// path inside the sandbox (volume name or absolute host path). Empty =

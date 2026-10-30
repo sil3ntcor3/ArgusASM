@@ -9,7 +9,7 @@
 <p align="center">
   <a href="https://github.com/sil3ntcor3/argus/releases"><img src="https://img.shields.io/github/v/release/sil3ntcor3/argus?style=flat-square&label=release" alt="Latest Release"></a>
   <a href="https://github.com/sil3ntcor3/argus/actions/workflows/build-nightly.yml"><img src="https://img.shields.io/github/actions/workflow/status/sil3ntcor3/argus/build-nightly.yml?style=flat-square&label=ci" alt="CI"></a>
-  <a href="https://hub.docker.com/r/sil3ntcor3/argusasm-api"><img src="https://img.shields.io/docker/pulls/sil3ntcor3/argusasm-api?style=flat-square&logo=docker&logoColor=white" alt="Docker Pulls"></a>
+  <a href="https://hub.docker.com/r/sil3ntcor3/argus-api"><img src="https://img.shields.io/docker/pulls/sil3ntcor3/argus-api?style=flat-square&logo=docker&logoColor=white" alt="Docker Pulls"></a>
   <a href="https://discord.gg/fWqbNHXR8H"><img src="https://img.shields.io/badge/discord-5865F2?style=flat-square&logo=discord&logoColor=white" alt="Discord"></a>
   <a href="https://www.linkedin.com/company/oasm-platform"><img src="https://img.shields.io/badge/linkedin-0A66C2?style=flat-square&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
   <a href="https://x.com/OasmPlatform"><img src="https://img.shields.io/badge/x-000000?style=flat-square&logo=x&logoColor=white" alt="X"></a>
@@ -291,7 +291,25 @@ Notes:
 - Set `WORKER_API_KEY` in `worker/.env` to the key the API expects.
 - On native Linux the worker needs the Docker socket group: `task docker-compose` detects `WORKER_DOCKER_GID` automatically. Raw `docker compose up` needs `WORKER_DOCKER_GID=$(stat -c '%g' /var/run/docker.sock) docker compose up -d --build`.
 - The socket mount is root-equivalent — only run trusted connector images.
-- Pre-built images: `sil3ntcor3/argusasm-console`, `sil3ntcor3/argusasm-api`, `sil3ntcor3/argusasm-worker` on Docker Hub.
+- Pre-built images: `sil3ntcor3/argus-console`, `sil3ntcor3/argus-api`, `sil3ntcor3/argus-worker` on Docker Hub.
+
+#### Image publishing
+
+- Pull requests into `dev` or `main` validate affected Docker builds without publishing images. Shared workspace dependency changes rebuild both Node images; image workflow changes validate all three.
+- Pushes to `dev` publish affected images as `:dev` for `linux/amd64` and `linux/arm64`. To rebuild all three, manually run **Build Argus Development Images** with the `dev` branch selected. Runs on other refs are skipped.
+- Push an existing stable version tag such as `v1.2.3` to publish all three images as `:v1.2.3` and `:latest`. Prerelease tags such as `v1.2.3-rc.1` publish only their version tag. Tags must fit Docker's 128-character limit and cannot include `+build` metadata.
+- For a manual release, run **Build Argus Release** and provide an existing `toTag`. Both images and worker binaries are built from that tag's commit. An absent or invalid tag fails before publishing. The GitHub release remains a draft.
+- Repository Actions secrets `DOCKER_USERNAME` and `DOCKER_TOKEN` must authenticate an account with write access to all three `sil3ntcor3/argus-*` repositories. Use a Docker Hub access token for `DOCKER_TOKEN`.
+- Compose uses `:latest`, so the first stable release must be published before pulling the renamed images. Development publishing runs Trivy after upload and reports to GitHub Security; it does not block publication on vulnerability findings.
+
+Validate locally from the repository root:
+
+```bash
+task images:lint                         # requires actionlint on PATH
+task images:check                        # Dockerfile checks and Compose image references
+task images:build SERVICE=worker         # local build cache only; never pushes
+# Optional: PLATFORMS=linux/arm64 (default: linux/amd64,linux/arm64)
+```
 - Production deploy: [argus-docker](https://github.com/sil3ntcor3/argus-docker) — see [docs.oasm.io/deployment](https://docs.oasm.io/deployment).
 
 ## Development

@@ -1,7 +1,7 @@
 services:
   console:
     container_name: console
-    image: sil3ntcor3/argusasm-console:latest
+    image: sil3ntcor3/argus-console:latest
     build:
       context: .
       dockerfile: console/Dockerfile
@@ -29,7 +29,7 @@ services:
 
   core-api:
     container_name: oasm-api
-    image: sil3ntcor3/argusasm-api:latest
+    image: sil3ntcor3/argus-api:latest
     build:
       context: .
       dockerfile: core-api/Dockerfile
@@ -70,7 +70,7 @@ services:
       retries: 10
 
   oasm-worker:
-    image: sil3ntcor3/argusasm-worker:latest
+    image: sil3ntcor3/argus-worker:latest
     build:
       context: ./worker
       dockerfile: Dockerfile
@@ -232,7 +232,7 @@ services:
 
   migration:
     container_name: oasm-migration
-    image: sil3ntcor3/argusasm-api:latest
+    image: sil3ntcor3/argus-api:latest
     networks:
       - oasm
     env_file:
