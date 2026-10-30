@@ -17,7 +17,7 @@ set -euo pipefail
 #   - 64-bit Linux or macOS (amd64 or arm64)
 # ============================================================
 
-REPOSITORY="sil3ntcor3/ArgusASM"
+REPOSITORY="sil3ntcor3/argus"
 DEFAULT_INSTALL_DIR="$HOME/.oasm-worker"
 DEFAULT_GRPC_HOST="localhost"
 DEFAULT_GRPC_PORT=16276

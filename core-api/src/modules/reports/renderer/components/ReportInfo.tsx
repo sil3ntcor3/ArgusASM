@@ -54,7 +54,7 @@ export const ReportInfo: React.FC = () => (
       <Text>
         <Text style={styles.linkLabel}>Github </Text>
         <Text style={styles.linkValue}>
-          https://github.com/sil3ntcor3/ArgusASM
+          https://github.com/sil3ntcor3/argus
         </Text>
       </Text>
     </View>
