@@ -86,15 +86,15 @@ describe('MembersSettings invite dialog', () => {
     const createGroupButton = await screen.findByRole('button', {
       name: 'Create group',
     });
-    expect(createGroupButton.className).toMatch(/(^|s)h-9(s|$)/);
+    expect(createGroupButton).toHaveClass('h-9');
 
     // Switch to the members tab to check the search input + invite button.
     await user.click(screen.getByRole('tab', { name: 'Members' }));
     const searchInput = await screen.findByPlaceholderText('Search members...');
     const inviteButton = screen.getByRole('button', { name: 'Invite member' });
 
-    expect(searchInput.className).toMatch(/(^|s)h-9(s|$)/);
-    expect(inviteButton.className).toMatch(/(^|s)h-9(s|$)/);
+    expect(searchInput).toHaveClass('h-9');
+    expect(inviteButton).toHaveClass('h-9');
   });
 
   it('filters invitations by email in the Invitations tab', async () => {

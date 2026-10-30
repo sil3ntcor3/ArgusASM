@@ -20,6 +20,15 @@ export const handlers = [
     return HttpResponse.json({ user: mockUser });
   }),
 
+  // Provider selectors are mounted by vulnerability analysis controls.
+  http.get('/api/agents/providers', () => HttpResponse.json([])),
+  http.get('/api/agents/providers/connected', () => HttpResponse.json([])),
+
+  // Empty defaults for background queries; specs can override these handlers.
+  http.get('/api/workspaces/permissions/catalog', () => HttpResponse.json([])),
+  http.get('/api/tools/:toolId/config-profiles', () => HttpResponse.json([])),
+  http.get('/api/events/stream', () => new HttpResponse(null, { status: 204 })),
+
   // Targets
   http.get('/api/targets', ({ request }) => {
     const url = new URL(request.url);
@@ -87,6 +96,15 @@ export const handlers = [
   }),
 
   // Statistics
+  http.get('/api/statistic/tls', () => {
+    return HttpResponse.json({
+      alreadyExpired: 0,
+      expireInAMonth: 0,
+      expireIn3Months: 0,
+      wontExpireAnytimeSoon: 0,
+      newCertificatesDiscovered: 0,
+    });
+  }),
   http.get('/api/statistic', () => {
     return HttpResponse.json({
       targets: 10,

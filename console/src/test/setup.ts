@@ -18,7 +18,8 @@ if (typeof Element !== 'undefined' && !Element.prototype.scrollIntoView) {
 
 beforeAll(() => {
   server.listen({
-    onUnhandledRequest: 'bypass',
+    // Unmocked requests must never reach a running local app or the network.
+    onUnhandledRequest: 'error',
   });
   // Mock window.scrollTo for TanStack Router scroll restoration
   window.scrollTo = vi.fn();

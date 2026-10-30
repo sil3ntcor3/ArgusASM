@@ -16,7 +16,6 @@ export default defineConfig({
     include: ['src/**/*.{test,spec}.{ts,tsx}'],
     pool: 'forks',
     poolTimeout: 60000,
-    dangerouslyIgnoreUnhandledErrors: true,
     coverage: {
       provider: 'v8',
       reporter: ['text', 'json', 'html'],
