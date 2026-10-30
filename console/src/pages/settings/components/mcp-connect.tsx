@@ -40,7 +40,7 @@ interface McpClient {
 
 function baseConfig(baseUrl: string, apiKey: string) {
   return {
-    'oasm-platform': {
+    'argus': {
       type: 'http' as const,
       url: `${baseUrl}/api/mcp`,
       headers: { 'x-oasm-api-key': apiKey },
@@ -80,7 +80,7 @@ const MCP_CLIENTS: McpClient[] = [
       JSON.stringify(
         {
           mcpServers: {
-            'oasm-platform': {
+            'argus': {
               type: 'http',
               url: `${b}/api/mcp`,
               headers: { 'x-oasm-api-key': k },
@@ -102,7 +102,7 @@ const MCP_CLIENTS: McpClient[] = [
       JSON.stringify(
         {
           mcpServers: {
-            'oasm-platform': {
+            'argus': {
               command: 'npx',
               args: ['-y', 'mcp-remote', `${b}/api/mcp`, '--header', `x-oasm-api-key: ${k}`],
             },
@@ -123,7 +123,7 @@ const MCP_CLIENTS: McpClient[] = [
       JSON.stringify(
         {
           mcpServers: {
-            'oasm-platform': {
+            'argus': {
               serverUrl: `${b}/api/mcp`,
               headers: { 'x-oasm-api-key': k },
             },
@@ -144,7 +144,7 @@ const MCP_CLIENTS: McpClient[] = [
       JSON.stringify(
         {
           mcpServers: {
-            'oasm-platform': {
+            'argus': {
               type: 'http',
               url: `${b}/api/mcp`,
               headers: { 'x-oasm-api-key': k },
@@ -186,7 +186,7 @@ const MCP_CLIENTS: McpClient[] = [
       JSON.stringify(
         {
           mcpServers: {
-            'oasm-platform': {
+            'argus': {
               httpUrl: `${b}/api/mcp`,
               headers: { 'x-oasm-api-key': k },
             },
@@ -207,7 +207,7 @@ const MCP_CLIENTS: McpClient[] = [
       JSON.stringify(
         {
           mcp: {
-            'oasm-platform': {
+            'argus': {
               type: 'remote',
               url: `${b}/api/mcp`,
               headers: { 'x-oasm-api-key': k },
