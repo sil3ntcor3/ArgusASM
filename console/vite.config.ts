@@ -26,8 +26,8 @@ export default defineConfig(({ mode }) => {
               includeAssets: ['radar.svg', 'icon-192.svg'],
               manifest: {
                 id: '/',
-                name: 'OpenASM - AI Agent Management Platform',
-                short_name: 'OpenASM',
+                name: 'Argus - AI Agent Management Platform',
+                short_name: 'Argus',
                 description:
                   'AI agent management and automation platform with MCP integration',
                 scope: '/',

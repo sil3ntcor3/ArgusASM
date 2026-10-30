@@ -67,7 +67,7 @@ export default function GetAboutProject() {
               className="size-12 shrink-0 rounded-xl object-contain"
             />
             <div className="min-w-0 space-y-0.5">
-              <h3 className="text-lg font-semibold tracking-tight">OpenASM</h3>
+              <h3 className="text-lg font-semibold tracking-tight">Argus</h3>
               <p className="text-sm text-muted-foreground">
                 Open-source platform for cybersecurity Attack Surface
                 Management.
