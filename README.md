@@ -296,11 +296,11 @@ Notes:
 #### Image publishing
 
 - Pull requests into `dev` or `main` validate affected Docker builds without publishing images. Shared workspace dependency changes rebuild both Node images; image workflow changes validate all three.
-- Pushes to `dev` publish affected images as `:dev` for `linux/amd64` and `linux/arm64`. To rebuild all three, manually run **Build Argus Development Images** with the `dev` branch selected. Runs on other refs are skipped.
-- Push an existing stable version tag such as `v1.2.3` to publish all three images as `:v1.2.3` and `:latest`. Prerelease tags such as `v1.2.3-rc.1` publish only their version tag. Tags must fit Docker's 128-character limit and cannot include `+build` metadata.
+- Pushes to `dev` publish affected images as `:dev`; pushes to `main` publish affected images as `:latest`. Both build for `linux/amd64` and `linux/arm64`. To rebuild all three, manually run **Build Argus Branch Images** with `dev` or `main` selected; the selected branch determines the tag. Runs on other refs are skipped. Commits that do not affect any image inputs skip the image builds.
+- Push an existing version tag such as `v1.2.3` or `v1.2.3-rc.1` to publish all three images using only that version tag. Release builds do not update `:latest`, which follows `main`. Tags must fit Docker's 128-character limit and cannot include `+build` metadata.
 - For a manual release, run **Build Argus Release** and provide an existing `toTag`. Both images and worker binaries are built from that tag's commit. An absent or invalid tag fails before publishing. The GitHub release remains a draft.
 - Repository Actions secrets `DOCKER_USERNAME` and `DOCKER_TOKEN` must authenticate an account with write access to all three `sil3ntcor3/argus-*` repositories. Use a Docker Hub access token for `DOCKER_TOKEN`.
-- Compose uses `:latest`, so the first stable release must be published before pulling the renamed images. Development publishing runs Trivy after upload and reports to GitHub Security; it does not block publication on vulnerability findings.
+- Compose uses `:latest`, so a successful image build from `main` must be published before pulling the images. Branch publishing runs Trivy after upload and reports to GitHub Security; it does not block publication on vulnerability findings.
 
 Validate locally from the repository root:
 
