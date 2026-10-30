@@ -33,7 +33,7 @@ export default function AppLogo({ type }: AppLogoProps) {
       />
       {showName && (
         <span className="truncate text-[15px] font-semibold tracking-tight text-foreground">
-          {metadata?.name || 'OASM'}
+          {metadata?.name || 'Argus'}
         </span>
       )}
     </Link>
