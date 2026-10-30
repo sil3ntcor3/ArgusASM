@@ -77,9 +77,9 @@ export default function DetailAsset() {
   useEffect(() => {
     const pageTitle = data?.httpResponses?.title || data?.value;
     if (!pageTitle) return;
-    document.title = `${pageTitle} | OASM`;
+    document.title = `${pageTitle} | Argus`;
     return () => {
-      document.title = 'OASM';
+      document.title = 'Argus';
     };
   }, [data?.httpResponses?.title, data?.value]);
 

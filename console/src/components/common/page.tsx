@@ -29,10 +29,10 @@ const Page = ({
 
   useEffect(() => {
     if (typeof title === 'string' && title) {
-      document.title = `${title} | OASM`;
+      document.title = `${title} | Argus`;
     }
     return () => {
-      document.title = 'OASM';
+      document.title = 'Argus';
     };
   }, [title]);
 
