@@ -56,6 +56,24 @@ func TestSnapshotFullAndInteractive(t *testing.T) {
 	}
 }
 
+func TestSnapshotTrimsNamesWithoutTrimmingValues(t *testing.T) {
+	a := newTestBrowsers(t)
+	page := strings.Replace(snapshotPage, `value="a@b.c"`, `value="  a@b.c  "`, 1)
+	srv := serveHTML(t, map[string]string{"/": page})
+	id, _ := openSession(t, a, srv.URL)
+
+	for _, command := range []string{"snapshot", "snapshot -i"} {
+		t.Run(command, func(t *testing.T) {
+			out := runOK(t, a, "-s "+id+" "+command)
+			for _, want := range []string{`- textbox "Email" [ref=e`, `- checkbox "Remember" [ref=e`, `value="  a@b.c  "`} {
+				if !strings.Contains(out, want) {
+					t.Errorf("snapshot missing %q:\n%s", want, out)
+				}
+			}
+		})
+	}
+}
+
 func TestRefsResolveAndGoStale(t *testing.T) {
 	a := newTestBrowsers(t)
 	srv := serveHTML(t, map[string]string{"/": snapshotPage, "/two": `<title>Two</title>`})

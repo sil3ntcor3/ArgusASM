@@ -130,12 +130,15 @@ const (
 var tailGrace = 150 * time.Millisecond
 
 // tailBuffer is a bounded ring buffer of container log lines. append drops the
-// oldest lines once the budget (100 lines / 32KB) is exceeded.
+// oldest lines once the budget (100 lines / 32KB) is exceeded. Concurrent reads
+// and appends are synchronized.
 type tailBuffer struct {
+	mu    sync.Mutex
 	lines []string
 	bytes int
 }
 
+// append adds a non-empty line while enforcing both tail budgets.
 func (t *tailBuffer) append(line string) {
 	if line == "" {
 		return
@@ -143,6 +146,8 @@ func (t *tailBuffer) append(line string) {
 	if len(line) > tailMaxBytes {
 		line = line[:tailMaxBytes]
 	}
+	t.mu.Lock()
+	defer t.mu.Unlock()
 	t.lines = append(t.lines, line)
 	t.bytes += len(line)
 	for (t.bytes > tailMaxBytes || len(t.lines) > tailMaxLines) && len(t.lines) > 1 {
@@ -151,7 +156,10 @@ func (t *tailBuffer) append(line string) {
 	}
 }
 
+// String returns a consistent snapshot of the current log tail.
 func (t *tailBuffer) String() string {
+	t.mu.Lock()
+	defer t.mu.Unlock()
 	if len(t.lines) == 0 {
 		return ""
 	}
