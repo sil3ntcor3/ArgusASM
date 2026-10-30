@@ -24,7 +24,7 @@ RUN pnpm install --frozen-lockfile
 # Copy full source
 COPY console/ ./console
 
-ENV NODE_ENV production
+ENV NODE_ENV=production
 ENV VITE_API_URL=APP_VITE_API_URL
 
 RUN pnpm --filter console run build && \

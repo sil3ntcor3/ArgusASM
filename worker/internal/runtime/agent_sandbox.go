@@ -28,7 +28,7 @@ const (
 	agentSandboxSessionLabel = "oasm.session_id"
 	agentSandboxOwnerLabel   = "oasm.worker_id"
 
-	agentSandboxDefaultImage = "sil3ntcor3/argusasm-worker:latest"
+	agentSandboxDefaultImage = "sil3ntcor3/argus-worker:latest"
 	agentSandboxWorkdir      = "/workspace"
 	agentSandboxUser         = "1000:1000"
 	// agentSandboxToolsFallback is where tools are mounted when the worker's
@@ -48,7 +48,7 @@ var ErrSandboxSessionClosed = errors.New("agent sandbox session closed")
 // AgentSandboxOptions configures NewAgentSandbox.
 type AgentSandboxOptions struct {
 	// Image overrides the sandbox image. Empty = the worker's own container
-	// image when containerized, else sil3ntcor3/argusasm-worker:latest.
+	// image when containerized, else sil3ntcor3/argus-worker:latest.
 	Image string
 	// ToolPath is the worker's absolute tool directory.
 	ToolPath string

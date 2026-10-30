@@ -1,9 +1,9 @@
-name: Build OASM Nightly
+name: Build Argus Development Images
 
 on:
   push:
     branches:
-      - "main"
+      - "dev"
   workflow_dispatch:
 
 concurrency:
@@ -11,12 +11,13 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  IMAGE_NAME: sil3ntcor3/argusasm
+  IMAGE_NAME: sil3ntcor3/argus
 
 jobs:
   detect-changes:
     name: Detect Changed Services
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/dev'
     permissions:
       contents: read
     outputs:
@@ -25,29 +26,43 @@ jobs:
       - uses: actions/checkout@v7
       - name: Detect changed services
         id: filter
+        if: github.event_name != 'workflow_dispatch'
         uses: dorny/paths-filter@v3
         with:
+          base: ${{ github.ref }}
           filters: |
             api:
               - 'core-api/**'
+              - 'console/package.json'
+              - 'pnpm-workspace.yaml'
+              - 'pnpm-lock.yaml'
+              - 'package.json'
+              - '.npmrc'
+              - '.dockerignore'
+              - '.github/workflows/build-nightly.yml'
             worker:
               - 'worker/**'
+              - '.github/workflows/build-nightly.yml'
             console:
               - 'console/**'
+              - 'core-api/package.json'
+              - 'pnpm-workspace.yaml'
+              - 'pnpm-lock.yaml'
+              - 'package.json'
+              - '.npmrc'
+              - '.dockerignore'
+              - '.github/workflows/build-nightly.yml'
       - id: set-matrix
+        env:
+          CHANGES: ${{ steps.filter.outputs.changes }}
         run: |
-          CHANGED=()
-          if [ "${{ steps.filter.outputs.api }}" == "true" ]; then CHANGED+=('"api"'); fi
-          if [ "${{ steps.filter.outputs.worker }}" == "true" ]; then CHANGED+=('"worker"'); fi
-          if [ "${{ steps.filter.outputs.console }}" == "true" ]; then CHANGED+=('"console"'); fi
-
-          if [ ${#CHANGED[@]} -eq 0 ]; then
-            MATRIX="{}"
+          if [ "$GITHUB_EVENT_NAME" = "workflow_dispatch" ]; then
+            echo 'matrix={"service":["api","worker","console"]}' >> "$GITHUB_OUTPUT"
+          elif [ "$CHANGES" = "[]" ]; then
+            echo 'matrix={}' >> "$GITHUB_OUTPUT"
           else
-            MATRIX="{\"service\": [$(IFS=,; echo "${CHANGED[*]}")]}"
+            printf 'matrix={"service":%s}\n' "$CHANGES" >> "$GITHUB_OUTPUT"
           fi
-
-          echo "matrix=$MATRIX" >> $GITHUB_OUTPUT
 
   build:
     name: Build Changed Services
@@ -61,6 +76,7 @@ jobs:
       security-events: write
     if: ${{ needs.detect-changes.outputs.matrix != '{}' && needs.detect-changes.outputs.matrix != '' }}
     strategy:
+      fail-fast: false
       matrix: ${{ fromJson(needs.detect-changes.outputs.matrix) }}
     steps:
       - name: Checkout code
@@ -85,6 +101,7 @@ jobs:
             --push \
             --cache-from=type=registry,ref=${{ env.IMAGE_NAME }}-${{ matrix.service }}:buildcache \
             --cache-to=type=registry,ref=${{ env.IMAGE_NAME }}-${{ matrix.service }}:buildcache,mode=max \
+            --build-arg APP_VERSION=dev \
             --tag ${{ env.IMAGE_NAME }}-${{ matrix.service }}:dev \
             --file ./${{ matrix.service == 'api' && 'core-api' || matrix.service }}/Dockerfile \
             ./${{ matrix.service == 'worker' && 'worker' || '.' }}
