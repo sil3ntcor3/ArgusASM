@@ -15,7 +15,7 @@ export const defaultTemplate: Template = {
   filename: `example-template.yaml`,
   isSaved: false,
   isCreate: true,
-  content: `# Welcome to OASM Templates
+  content: `# Welcome to Argus Templates
 
 id: example-template # Unique identifier for the template
 
