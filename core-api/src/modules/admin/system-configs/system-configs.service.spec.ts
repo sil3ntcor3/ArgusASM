@@ -75,20 +75,66 @@ describe('SystemConfigsService', () => {
       expect(result).toEqual({ name: 'Test System', logoPath: clientUrl });
     });
 
-    it('returns null logoPath without calling helper when absent', async () => {
-      (mockSystemConfigRepository.findOne as jest.Mock).mockResolvedValue({
-        id: 1,
-        name: 'OASM',
+    it('creates new configurations with the Argus name', async () => {
+      (mockSystemConfigRepository.findOne as jest.Mock).mockResolvedValue(null);
+      (mockSystemConfigRepository.create as jest.Mock).mockImplementation(
+        (config: Partial<SystemConfig>) => ({ id: 1, ...config }),
+      );
+
+      await expect(service.getConfig()).resolves.toEqual({
+        name: 'Argus',
         logoPath: null,
       });
-
-      const result = await service.getConfig();
-
-      expect(
-        mockStorageService.signStoragePath as jest.Mock,
-      ).not.toHaveBeenCalled();
-      expect(result).toEqual({ name: 'OASM', logoPath: null });
+      expect(mockSystemConfigRepository.save).toHaveBeenCalledWith({
+        id: 1,
+        name: 'Argus',
+        logoPath: undefined,
+      });
     });
+
+    it.each(['Acme Security', 'OASM'])(
+      'preserves the saved name %s without rewriting the configuration',
+      async (name) => {
+        (mockSystemConfigRepository.findOne as jest.Mock).mockResolvedValue({
+          id: 1,
+          name,
+          logoPath: null,
+        });
+
+        const result = await service.getConfig();
+
+        expect(
+          mockStorageService.signStoragePath as jest.Mock,
+        ).not.toHaveBeenCalled();
+        expect(result).toEqual({ name, logoPath: null });
+        expect(mockSystemConfigRepository.create).not.toHaveBeenCalled();
+        expect(mockSystemConfigRepository.save).not.toHaveBeenCalled();
+      },
+    );
+  });
+
+  describe('updateConfig', () => {
+    it.each([
+      { input: '', expected: 'Argus' },
+      { input: 'Acme Security', expected: 'Acme Security' },
+    ])(
+      'saves $expected for the requested name "$input"',
+      async ({ input, expected }) => {
+        (mockSystemConfigRepository.findOne as jest.Mock).mockResolvedValue({
+          id: 1,
+          name: 'Saved brand',
+          logoPath: null,
+        });
+
+        await service.updateConfig({ name: input });
+
+        expect(mockSystemConfigRepository.save).toHaveBeenCalledWith({
+          id: 1,
+          name: expected,
+          logoPath: null,
+        });
+      },
+    );
   });
 
   describe('getRawLogoPath', () => {
@@ -149,7 +195,7 @@ describe('SystemConfigsService', () => {
     it('should create default config if none exists and return no logo message', async () => {
       const mockConfig = {
         id: 1,
-        name: 'OASM',
+        name: 'Argus',
         logoPath: null,
       };
 
@@ -165,7 +211,7 @@ describe('SystemConfigsService', () => {
 
       expect(mockSystemConfigRepository.findOne).toHaveBeenCalled();
       expect(mockSystemConfigRepository.create).toHaveBeenCalledWith({
-        name: 'OASM',
+        name: 'Argus',
         logoPath: undefined,
       });
       expect(result).toEqual({

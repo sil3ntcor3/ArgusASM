@@ -6,7 +6,7 @@ export default function AuthHeader() {
   return (
     <div className="flex gap-2 items-center justify-center">
       <Logo logoPath={metadata?.logoPath as string} width={40} height={40} />
-      <b className="text-2xl truncate">{metadata?.name || 'OASM'}</b>
+      <b className="text-2xl truncate">{metadata?.name || 'Argus'}</b>
     </div>
   );
 }
