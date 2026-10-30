@@ -127,6 +127,7 @@ function MetadataProvider({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
 
+/** Keeps route guards and workspace data in sync with the live auth session. */
 function AppRouter() {
   const { data: session, isPending } = useSession();
   // Init to undefined (not session) so the first effect run is detectable:
@@ -170,10 +171,10 @@ function AppRouter() {
       return;
     }
 
-    // Fresh session (e.g. login) — start loading the authed chunks in
-    // parallel with the session propagation that redirects to '/'.
+    // Warm workspace data after sign-in or session restoration. Preloading
+    // full route matches here races the initial load and invalidation below;
+    // the login page already warms route chunks without running their guards.
     if (session && !prevSession) {
-      router.preloadRoute({ to: '/' }).catch(() => {});
       // Warm the workspaces query the _authed layout blocks on, so the
       // redirect to '/' doesn't stall behind the boot splash.
       void queryClient.prefetchQuery(getWorkspaceListQueryOptions());
