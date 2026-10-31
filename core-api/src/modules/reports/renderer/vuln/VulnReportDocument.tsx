@@ -462,7 +462,7 @@ interface VulnReportDocumentProps {
 export const VulnReportDocument: React.FC<VulnReportDocumentProps> = ({
   data,
 }) => (
-  <Document title={data.reportTitle} author="Open Attack Surface Management">
+  <Document title={data.reportTitle} author="Argus">
     {/* Cover page — no header/footer */}
     <CoverPage
       coverTitle="Vulnerability Assessment Report"

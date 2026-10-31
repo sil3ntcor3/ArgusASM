@@ -177,7 +177,7 @@ export const CoverPage: React.FC<CoverPageProps> = ({
           <Image src={logoBase64} style={styles.logo} />
         ) : (
           <View style={styles.logoFallback}>
-            <Text style={styles.logoFallbackText}>{systemNameChar || 'O'}</Text>
+            <Text style={styles.logoFallbackText}>{systemNameChar || 'A'}</Text>
           </View>
         )}
         <Text style={styles.systemName}>{systemName}</Text>

@@ -19,7 +19,7 @@ export async function renderReportPdf(
   // Merge server-side fields into data
   const enrichedData = {
     ...data,
-    systemName: 'Open Attack Surface Management',
+    systemName: 'Argus',
     classification: 'Strictly Confidential',
   };
 
