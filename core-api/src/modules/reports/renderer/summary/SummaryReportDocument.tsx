@@ -768,7 +768,7 @@ export const SummaryReportDocument: React.FC<SummaryReportDocumentProps> = ({
   return (
     <Document
       title={data.reportTitle}
-      author="Open Attack Surface Management"
+      author="Argus"
     >
       {/* Cover page — no header/footer */}
       <CoverPage

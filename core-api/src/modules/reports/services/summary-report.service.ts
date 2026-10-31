@@ -161,7 +161,7 @@ export class SummaryReportService {
       year,
       exportedAt: now.toISOString(),
       classification: 'Strictly Confidential',
-      systemName: 'Open Attack Surface Management',
+      systemName: 'Argus',
       workspaceName: workspace.name,
       formattedDate: now.toLocaleDateString('en-GB', {
         day: '2-digit',
@@ -171,7 +171,7 @@ export class SummaryReportService {
         minute: '2-digit',
       }),
       weekPad: String(week).padStart(2, '0'),
-      systemNameChar: 'O',
+      systemNameChar: 'A',
       dateRange,
       dateRangeLabel,
       weekly: {

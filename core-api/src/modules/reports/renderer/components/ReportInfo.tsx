@@ -40,17 +40,11 @@ const styles = StyleSheet.create({
 
 export const ReportInfo: React.FC = () => (
   <View style={styles.container}>
-    <Text style={styles.title}>Open Attack Surface Management</Text>
+    <Text style={styles.title}>Argus</Text>
     <Text style={styles.description}>
-      Open-source platform for cybersecurity Attack Surface Management (OASM).
+      Open-source platform for cybersecurity Attack Surface Management.
     </Text>
     <View style={styles.linksRow}>
-      <Text>
-        <Text style={styles.linkLabel}>LinkedIn </Text>
-        <Text style={styles.linkValue}>
-          https://www.linkedin.com/company/oasm-platform
-        </Text>
-      </Text>
       <Text>
         <Text style={styles.linkLabel}>Github </Text>
         <Text style={styles.linkValue}>
